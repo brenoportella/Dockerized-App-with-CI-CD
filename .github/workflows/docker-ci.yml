@@ -1,0 +1,24 @@
+name: CI - Build and Test Docker
+
+on:
+  push:
+    branches: [ "main" ]   # roda em cada push para a branch main
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t projectb-app .
+
+      - name: Run container
+        run: docker run -d -p 5000:5000 --name projectb-container projectb-app
+
+      - name: Check container logs
+        run: docker logs projectb-container
