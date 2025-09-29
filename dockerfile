@@ -14,4 +14,4 @@ COPY . .
 EXPOSE 5000
 
 # Comando para rodar app
-CMD ["python4", "app/app.py"]
+CMD ["python3", "app/app.py"]
