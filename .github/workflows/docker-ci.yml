@@ -24,7 +24,7 @@ jobs:
         run: sleep 10
 
       - name: Test web endpoint
-        run: curl -f http://localhost:5000 || exit 1
+        run: docker compose exec -T web curl -f http://localhost:5000 || exit 1
 
       - name: Show container logs
         run: docker compose logs
