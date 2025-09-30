@@ -3,6 +3,7 @@ version: "3.9"
 services:
   web:
     build: ./app
+    image: ghcr.io/brenoportella/projectb-app:latest  # <- adicionado
     ports:
       - "5000:5000"
     environment:
@@ -11,7 +12,7 @@ services:
       - db
 
   db:
-    image: postgres:15
+    image: postgres:15  # não precisa push, pois é pública
     restart: always
     environment:
       POSTGRES_USER: postgres
