@@ -20,14 +20,12 @@ jobs:
       - name: Build and start containers
         run: docker compose up -d --build
 
-      - name: Wait and test endpoint
+      - name: Wait and test endpoint from host
         run: |
           echo "Waiting for service to be ready..."
-          sleep 10
-          
-          # Direct curl test with retries
+          # Use curl from the host machine, not from inside the container
           for i in {1..10}; do
-            if docker compose exec -T web curl -f http://localhost:5000; then
+            if curl -f http://localhost:5000; then
               echo "Success! Application is running."
               exit 0
             fi
