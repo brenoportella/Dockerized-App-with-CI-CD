@@ -20,8 +20,13 @@ jobs:
       - name: Build and start containers
         run: docker compose up -d --build
 
-      - name: Wait for app to start
-        run: sleep 10
+      - name: Wait for web container
+        run: |
+          echo "Waiting for web container to be healthy..."
+          for i in {1..20}; do
+            docker compose ps | grep web | grep "Up" && break
+            sleep 3
+          done
 
       - name: Test web endpoint
         run: docker compose exec -T web curl -f http://localhost:5000 || exit 1
