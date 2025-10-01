@@ -57,7 +57,7 @@ cd Dockerized-WEB-APP---CI-CD
 
 2. Pull web image:
 ```bash
-docker pull ghcr.io/<username>/projectb-web:latest
+docker pull ghcr.io/brenoportella/projectb-web:latest
 ```
 
 3. Start containers:
