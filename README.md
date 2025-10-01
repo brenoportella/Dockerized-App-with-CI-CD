@@ -91,10 +91,7 @@ curl http://localhost:5000/messages
 - Environment variables: secure configuration for containers
 
 ## Future Improvements
-- Use production WSGI server (Gunicorn) instead of Flask dev server
-- Add error handling in endpoints
 - Add automated tests for CI
-- Configure deployment to cloud servers
 
 ## Author
 Developed as part of a DevOps learning path and portfolio building project.
