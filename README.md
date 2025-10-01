@@ -36,6 +36,9 @@ project-b/
 │      ├── docker-cd.yml   # Continuous Deployment workflow
 │      └── docker-ci.yml   # Continuous Integration workflow
 │
+├── scripts/
+│   ├── deploy.sh          # Script to automatizate deploy
+│
 ├── app/                   # Application source code
 │   ├── __init__.py        # Marks directory as a package 
 │   ├── app.py             # Minimal Flask app
@@ -48,11 +51,11 @@ project-b/
 
 ## Running the App Locally
 
-### Using Docker Compose
+### Option 1: Using Docker Compose manually
 1. Clone repository:
 ```bash
-git clone https://github.com/brenoportella/Dockerized-WEB-APP---CI-CD.git
-cd Dockerized-WEB-APP---CI-CD
+git clone git@github.com:brenoportella/Dockerized-App-with-CI-CD.git
+cd Dockerized-App-with-CI-CD
 ```
 
 2. Pull web image:
@@ -78,6 +81,22 @@ curl -X POST http://localhost:5000/add -H "Content-Type: application/json" -d '{
 curl http://localhost:5000/messages
 ```
 
+### Option 2: Using the deploy script
+You can also deploy the app automatically by running:
+```bash
+git clone git@github.com:brenoportella/Dockerized-App-with-CI-CD.git
+cd Dockerized-App-with-CI-CD
+cd scripts
+chmod +x deploy.sh
+./deploy.sh
+```
+
+- This script installs Docker, `curl` and Docker Compose if missing, pulls the latest image, downloads `docker-compose.yml` if needed, and starts the containers.
+- After running, check the status with:
+```bash
+docker-compose ps
+docker-compose logs -f
+```
 
 ## CI/CD Overview
 - **CI Workflow:** Runs on pushes or pull requests to `main` - builds and tests the Docker image
